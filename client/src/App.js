@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { Route, Link, Switch, useHistory } from 'react-router-dom';
+import Movie from './Movies/Movie';
+import MovieList from './Movies/MovieList';
 
 import SavedList from './Movies/SavedList';
 
@@ -9,10 +12,28 @@ const App = () => {
     setSavedList( [...savedList, movie] );
   };
 
+  const history = useHistory();
+
+  const routeToHome = () => {
+    history.push('/');
+  };
+
   return (
     <div>
-      <SavedList list={savedList} />
-      <div>Replace this Div with your Routes</div>
+
+      <SavedList list={savedList} routeToHome={routeToHome} />    
+    
+      <Switch>
+
+        <Route path={'/movies/:movieID'}>
+          <Movie addToSavedList={addToSavedList}/>
+        </Route>
+        
+        <Route path={'/'}>
+          <MovieList />
+        </Route>
+      </Switch>
+
     </div>
   );
 };
