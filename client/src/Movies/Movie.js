@@ -7,8 +7,6 @@ import MovieList from './MovieList'
 const Movie = (props) => {
 
   const [movie, setMovie] = useState();
-  
-  console.log(props);
 
   const { movieID } = useParams();
 
@@ -32,6 +30,7 @@ const Movie = (props) => {
   const saveMovie = () => {
     const addToSavedList = props.addToSavedList;
     addToSavedList(movie)
+    console.log(movie);
   }
 
   if (!movie) {

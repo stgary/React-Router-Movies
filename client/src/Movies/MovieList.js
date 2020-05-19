@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import Movie from './Movie';
+import SavedList from './SavedList'
 import { NavLink, useParams, useRouteMatch, Switch, Route } from 'react-router-dom';
 
 const MovieList = props => {
@@ -24,10 +25,12 @@ const MovieList = props => {
   }, []);
   
   return (
+    <div>
     <div className="movie-list">
       {movies.map(movie => (
         <MovieDetails key={movie.id} movie={movie} />
       ))}
+    </div>
     </div>
   );
 }
