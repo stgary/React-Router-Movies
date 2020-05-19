@@ -64,7 +64,7 @@ body {
 }
 .save-wrapper {
   position: relative;
-  width: 88.5%;
+  width: 88.2%;
   margin: 1rem auto;
 }
 .save-button {
@@ -73,14 +73,24 @@ body {
   right: 25px;
   border: 1px solid grey;
   padding: 5px 10px;
-  background-color: lightseagreen;
+  background-color: lightskyblue;
 }
 .save-button:hover {
   background-color: green;
   color: white;
 }
 
+.clear-button {
+  padding: 5px 10px;
+  border: 1px solid grey;
+  background-color: lightskyblue;
+}
+
 .home-button {
+  position: absolute;
+  top: 25px;
+  left: 25px;
+  border: 1px solid grey;
   padding: 5px 10px;
   background-color: lightskyblue;
 }

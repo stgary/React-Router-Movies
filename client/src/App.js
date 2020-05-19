@@ -1,45 +1,47 @@
-import React, { useState, useEffect } from 'react';
-import { Route, Link, Switch, useHistory } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import Movie from './Movies/Movie';
 import MovieList from './Movies/MovieList';
-
 import SavedList from './Movies/SavedList';
 
 const App = () => {
   
   const [savedList, setSavedList] = useState( [] );
 
-  const addToSavedList = movie => {
-    setSavedList( [...savedList, movie] );
-  };
-
-    const removeMovie = id  => {
-      const movie = savedList.filter(movie => movie.id !== id);
-      setSavedList(movie);
-    }; 
-
   const history = useHistory();
-
+  
   const routeToHome = () => {
     history.push('/');
   };
 
+  const addToSavedList = (movie) => {
+    const duplicate = savedList.some(m => m.id === movie.id)
+      if (!duplicate) {
+        setSavedList([...savedList, movie])
+      }
+      history.push('/');
+  };
+
+  const removeMovie = movie  => {
+    const updatedList = savedList.filter(m => m.id !== movie.id);
+    setSavedList(updatedList);
+  };
+
+  const clearList = () => {
+    setSavedList([]);
+  };
+
   return (
     <div>
-
-      <SavedList list={savedList} routeToHome={routeToHome} removeMovie={removeMovie}/>    
-    
+      <SavedList list={savedList} clearList={clearList} removeMovie={removeMovie}/>    
       <Switch>
-
         <Route path={'/movies/:movieID'}>
-          <Movie addToSavedList={addToSavedList}/>
+          <Movie addToSavedList={addToSavedList} routeToHome={routeToHome}/>
         </Route>
-        
         <Route path={'/'}>
           <MovieList />
         </Route>
       </Switch>
-
     </div>
   );
 };
